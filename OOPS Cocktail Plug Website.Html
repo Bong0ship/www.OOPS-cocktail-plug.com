@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OOPs Cocktail Plug | Premium Mobile Bar Service | Katlehong</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6A0DAD;       /* Purple brand color */
+            --secondary: #FFD700;     /* Gold accent */
+            --accent: #E94584;       /* Pink for highlights */
+            --dark: #1A1A1A;
+            --light: #FFFFFF;
+            --text: #333333;
+            --gray: #F5F5F5;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            width: 100%;
+            background: rgba(26, 26, 26, 0.9);
+            padding: 20px 5%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            color: var(--light);
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1551751299-1b51cab2694c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--light);
+            padding: 0 20px;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s ease;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: var(--secondary);
+            color: var(--dark);
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            animation: fadeIn 1.5s ease;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .scroll-down {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--light);
+            font-size: 2rem;
+            animation: bounce 2s infinite;
+            cursor: pointer;
+        }
+        
+        /* Services Section */
+        .section {
+            padding: 100px 5%;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--secondary);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background: var(--light);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .service-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .service-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .service-card:hover .service-img img {
+            transform: scale(1.1);
+        }
+        
+        .service-content {
+            padding: 25px;
+        }
+        
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .service-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        .service-content p {
+            margin-bottom: 20px;
+            color: var(--text);
+        }
+        
+        .price-tag {
+            display: inline-block;
+            background: var(--secondary);
+            color: var(--dark);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 700;
+        }
+        
+        /* Menu Section */
+        .menu-filters {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            background: none;
+            border: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text);
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .filter-btn::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s;
+        }
+        
+        .filter-btn:hover::after,
+        .filter-btn.active::after {
+            width: 100%;
+        }
+        
+        .filter-btn.active {
+            color: var(--primary);
+        }
+        
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .menu-item {
+            background: var(--light);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            display: flex;
+            transition: transform 0.3s;
+        }
+        
+        .menu-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .menu-img {
+            width: 120px;
+            height: 120px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        
+        .menu-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .menu-details {
+            padding: 15px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .menu-details h3 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+            color: var(--dark);
+        }
+        
+        .menu-details p {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        .menu-price {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+        
+        /* Booking Section */
+        .booking {
+            background: linear-gradient(rgba(106, 13, 173, 0.9), rgba(106, 13, 173, 0.9)), url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--light);
+            padding: 100px 5%;
+        }
+        
+        .booking-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 50px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .booking-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.2);
+            color: var(--light);
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .form-control:focus {
+            outline: 2px solid var(--secondary);
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .quote-display {
+            grid-column: 1 / -1;
+            background: rgba(255, 215, 0, 0.2);
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 20px;
+            text-align: center;
+            border: 1px solid var(--secondary);
+        }
+        
+        .quote-amount {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin: 10px 0;
+        }
+        
+        .submit-btn {
+            grid-column: 1 / -1;
+            background: var(--secondary);
+            color: var(--dark);
+            border: none;
+            padding: 15px;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .submit-btn:hover {
+            background: #ffcc00;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: var(--dark);
+                flex-direction: column;
+                align-items: center;
+                padding-top: 40px;
+                transition: left 0.3s ease;
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .nav-links li {
+                margin: 15px 0;
+            }
+            
+            .menu-toggle {
+                display: block;
+                color: var(--light);
+                font-size: 1.5rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section {
+                padding: 70px 5%;
+            }
+            
+            .booking-container {
+                padding: 30px;
+            }
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0) translateX(-50%);
+            }
+            40% {
+                transform: translateY(-20px) translateX(-50%);
+            }
+            60% {
+                transform: translateY(-10px) translateX(-50%);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">OOPs <span>Cocktail Plug</span></div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#booking">Book Now</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Premium Mobile Bar Services</h1>
+            <p>Turning ordinary events into extraordinary experiences with expertly crafted cocktails and mocktails in Katlehong and surrounding areas</p>
+            <a href="#booking" class="cta-button">Book Your Event</a>
+        </div>
+        <div class="scroll-down" onclick="document.getElementById('services').scrollIntoView({behavior: 'smooth'})">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="section" id="services">
+        <div class="section-title">
+            <h2>Our Services</h2>
+        </div>
+        <div class="services-grid">
+            <!-- Service 1 -->
+            <div class="service-card">
+                <div class="service-img">
+                    <img src="https://images.unsplash.com/photo-1514361892635-6b07e31e75f9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Custom Cocktails">
+                </div>
+                <div class="service-content">
+                    <div class="service-icon">
+                        <i class="fas fa-cocktail"></i>
+                    </div>
+                    <h3>Custom Cocktails</h3>
+                    <p>From R40 budget-friendly options to R200 premium mixes tailored to your event</p>
+                    <span class="price-tag">R40 - R200</span>
+                </div>
+            </div>
+            
+            <!-- Service 2 -->
+            <div class="service-card">
+                <div class="service-img">
+                    <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Event Bookings">
+                </div>
+                <div class="service-content">
+                    <div class="service-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h3>Event Bookings</h3>
+                    <p>Stylish mobile bar stall to elevate weddings, corporate events and private parties</p>
+                    <span class="price-tag">From R5,000</span>
+                </div>
+            </div>
+            
+            <!-- Service 3 -->
+            <div class="service-card">
+                <div class="service-img">
+                    <img src="https://images.unsplash.com/photo-1551751299-1b51cab2694c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Themed Drinks">
+                </div>
+                <div class="service-content">
+                    <div class="service-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3>Themed Signature Drinks</h3>
+                    <p>Personalized cocktail menus to match your event theme and brand colors</p>
+                    <span class="price-tag">Custom Quotes</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section class="section" id="menu">
+        <div class="section-title">
+            <h2>Our Menu</h2>
+        </div>
+        <div class="menu-filters">
+            <button class="filter-btn active" data-filter="all">All Drinks</button>
+            <button class="filter-btn" data-filter="cocktail">Cocktails</button>
+            <button class="filter-btn" data-filter="mocktail">Mocktails</button>
+            <button class="filter-btn" data-filter="premium">Premium</button>
+        </div>
+        <div class="menu-grid">
+            <!-- Item 1 -->
+            <div class="menu-item" data-category="cocktail">
+                <div class="menu-img">
+                    <img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Classic Mojito">
+                </div>
+                <div class="menu-details">
+                    <h3>Classic Mojito</h3>
+                    <p>White rum, fresh mint, lime, sugar and soda</p>
+                    <div class="menu-price">R50</div>
+                </div>
+            </div>
+            
+            <!-- Item 2 -->
+            <div class="menu-item" data-category="cocktail">
+                <div class="menu-img">
+                    <img src="https://images.unsplash.com/photo-1551029506-0807df4e2031?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Whiskey Sour">
+                </div>
+                <div class="menu-details">
+                    <h3>Whiskey Sour</h3>
+                    <p>Bourbon, lemon juice, sugar and egg white</p>
+                    <div class="menu-price">R65</div>
+                </div>
+            </div>
+            
+            <!-- Item 3 -->
+            <div class="menu-item" data-category="mocktail">
+                <div class="menu-img">
+                    <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Virgin Mojito">
+                </div>
+                <div class="menu-details">
+                    <h3>Virgin Mojito</h3>
+                    <p>Fresh mint, lime, sugar and soda (alcohol-free)</p>
+                    <div class="menu-price">R35</div>
+                </div>
+            </div>
+            
+            <!-- Item 4 -->
+            <div class="menu-item" data-category="premium">
+                <div class="menu-img">
+                    <img src="https://images.unsplash.com/photo-1551533711-2aef6a1a0c7b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Espresso Martini">
+                </div>
+                <div class="menu-details">
+                    <h3>Espresso Martini</h3>
+                    <p>Vodka, coffee liqueur, fresh espresso</p>
+                    <div class="menu-price">R95</div>
+                </div>
+            </div>
+            
+            <!-- Add more items as needed -->
+        </div>
+    </section>
+
+    <!-- Booking Section -->
+    <section class="booking" id="booking">
+        <div class="booking-container">
+            <div class="section-title">
+                <h2 style="color: var(--light);">Book Your Event</h2>
+            </div>
+            <form class="booking-form">
+                <div class="form-group">
+                    <label for="event-type">Event Type</label>
+                    <select id="event-type" class="form-control" required>
+                        <option value="" disabled selected>Select event type</option>
+                        <option value="wedding">Wedding</option>
+                        <option value="corporate">Corporate Event</option>
+                        <option value="birthday">Birthday Party</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="event-date">Event Date</label>
+                    <input type="date" id="event-date" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="guests">Number of Guests</label>
+                    <input type="number" id="guests" class="form-control" min="20" placeholder="20+" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="package">Package</label>
+                    <select id="package" class="form-control" required>
+                        <option value="" disabled selected>Select package</option>
+                        <option value="basic">Basic Bar (R5,000)</option>
+                        <option value="premium">Premium Bar (R8,500-R12,000)</option>
+                        <option value="vip">VIP Experience (R15,000+)</option>
+                        <option value="custom">Custom Package</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="location">Event Location</label>
+                    <input type="text" id="location" class="form-control" placeholder="Address or venue name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" class="form-control" placeholder="Full name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" class="form-control" placeholder="Your email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Phone</label>
+                    <input type="tel" id="phone" class="form-control" placeholder="Phone number" required>
+                </div>
+                
+                <div class="quote-display">
+                    <p>Estimated Quote:</p>
+                    <div class="quote-amount">R0</div>
+                    <p>Prices may vary based on final requirements</p>
+                </div>
+                
+                <button type="submit" class="submit-btn">Request Booking</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+        <div class="section-title">
+            <h2>Contact Us</h2>
+        </div>
+        <div class="contact-container" style="max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px;">
+            <div class="contact-info">
+                <h3 style="font-size: 1.5rem; margin-bottom: 20px; color: var(--primary);">Get In Touch</h3>
+                <p style="margin-bottom: 15px;">
+                    <i class="fas fa-map-marker-alt" style="color: var(--primary); margin-right: 10px;"></i>
+                    <strong>Locations:</strong><br>
+                    455 Mashaba street (For collection)<br>
+                    466 Masemola (Saturdays)
+                </p>
+                <p style="margin-bottom: 15px;">
+                    <i class="fas fa-phone-alt" style="color: var(--primary); margin-right: 10px;"></i>
+                    <strong>Call/WhatsApp:</strong> 065 807 8626
+                </p>
+                <p style="margin-bottom: 15px;">
+                    <i class="fas fa-envelope" style="color: var(--primary); margin-right: 10px;"></i>
+                    <strong>Email:</strong> Sibisibonginkosi79@gmail.com
+                </p>
+                <div class="social-links" style="margin-top: 20px;">
+                    <a href="[Facebook URL]" style="display: inline-block; background: var(--primary); color: white; width: 40px; height: 40px; border-radius: 50%; text-align: center; line-height: 40px; margin-right: 10px;">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" style="display: inline-block; background: var(--primary); color: white; width: 40px; height: 40px; border-radius: 50%; text-align: center; line-height: 40px; margin-right: 10px;">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" style="display: inline-block; background: var(--primary); color: white; width: 40px; height: 40px; border-radius: 50%; text-align: center; line-height: 40px;">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="contact-map">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3579.123456789012!2d28.12345678901234!3d-26.12345678901234!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjbCsDA3JzI0LjUiTiAyOMKwMDcnMjQuNSJF!5e0!3m2!1sen!2sza!4v1234567890123!5m2!1sen!2sza" width="100%" height="300" style="border:0; border-radius: 10px;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background: var(--dark); color: var(--light); padding: 30px 5%; text-align: center;">
+        <p>&copy; 2023 OOPs Cocktail Plug. All Rights Reserved.</p>
+        <p style="margin-top: 10px; font-size: 0.9rem;">Premium mobile bar services in Katlehong and surrounding areas</p>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        
+        // Smooth Scrolling for Navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                navLinks.classList.remove('active');
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Menu Filtering
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const menuItems = document.querySelectorAll('.menu-item');
+        
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterBtns.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                btn.classList.add('active');
+                
+                const filter = btn.getAttribute('data-filter');
+                
+                menuItems.forEach(item => {
+                    if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                        item.style.display = 'flex';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+        // Booking Form Calculator
+        const bookingForm = document.querySelector('.booking-form');
+        const packageSelect = document.getElementById('package');
+        const guestsInput = document.getElementById('guests');
+        const quoteDisplay = document.querySelector('.quote-amount');
+        
+        function calculateQuote() {
+            let basePrice = 0;
+            const packageValue = packageSelect.value;
+            const guests = parseInt(guestsInput.value) || 0;
+            
+            switch(packageValue) {
+                case 'basic':
+                    basePrice = 5000;
+                    break;
+                case 'premium':
+                    basePrice = 8500;
+                    if (guests > 50) basePrice += (guests - 50) * 50;
+                    if (basePrice > 12000) basePrice = 12000;
+                    break;
+                case 'vip':
+                    basePrice = 15000 + (guests * 100);
+                    break;
+                case 'custom':
+                    basePrice = 0;
+                    break;
+                default:
+                    basePrice = 0;
+            }
+            
+            if (packageValue && basePrice > 0) {
+                quoteDisplay.textContent = `R${basePrice.toLocaleString()}`;
+            } else {
+                quoteDisplay.textContent = 'R0';
+            }
+        }
+        
+        packageSelect.addEventListener('change', calculateQuote);
+        guestsInput.addEventListener('input', calculateQuote);
+        
+        // Form Submission
+        bookingForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your booking request! We will contact you shortly to confirm details.');
+            this.reset();
+            quoteDisplay.textContent = 'R0';
+        });
+    </script>
+</body>
+</html>
